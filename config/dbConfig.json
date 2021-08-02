@@ -1,6 +1,6 @@
 {
 	"mongodb": {
-		"url": "mongodb://127.0.0.1:27017/fashionCloud",
+		"url": "mongodb://127.0.0.1:27017/fashionCloud_api",
 		"autoReconnect": true,
 		"autoRemove": "native",
 		"autoRemoveInterval": 10,

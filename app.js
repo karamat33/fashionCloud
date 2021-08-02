@@ -6,7 +6,7 @@ var express = require('express'),
 	
 // setting up config for mongodb server
 var config = JSON.parse(fs.readFileSync('./config/dbConfig.json', 'utf-8'));
-mongoose.connect(config.mongodb.url, { useMongoClient: true });
+mongoose.connect(config.mongodb.url, { useNewUrlParser: true,useUnifiedTopology: true,useCreateIndex: true });
 
 // checking connectivity with mongodb server
 mongoose.connection.once('open', function(){
