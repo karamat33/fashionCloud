@@ -5,6 +5,34 @@ var config = JSON.parse(fs.readFileSync('./config/dbConfig.json', 'utf-8'));
 var crypto = require("crypto");
 
 
+//overwrtitng functionality
+var checkAndReplaceRecord = function(next) {
+	var self = this;
+	self.modifiedAt = new Date();
+	if (!self.isNew) return next();
+	self.model('Cache').count({}, function(err, count) {
+		//check for the record that has been least modified and replace
+		if (count + 1 > config.cache.maxLimit) {
+			self.model('Cache')
+				.findOne({}, {
+					_id: 1
+				})
+				.sort({
+					modifiedAt: 1
+				}).exec(function(err, cache) {
+					self.isNew = false;
+					self._id = cache._id;
+					self.createdAt = new Date();
+					self.modifiedAt = new Date();
+					next();
+				});
+		} else {
+			next();
+		}
+	});
+};
+
+
 //Cache
 var CacheSchema = new Schema({
 	key: {
@@ -33,5 +61,7 @@ var CacheSchema = new Schema({
 }, {
 	collection: 'cache'
 });
+
+CacheSchema.pre('save', checkAndReplaceRecord);
 
 module.exports = mongoose.model('Cache', CacheSchema);

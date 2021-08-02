@@ -32,7 +32,7 @@ module.exports.createOrUpdateCache =  Promise.coroutine(function* (req, res) {
   }
 });
 
-
+//get cache by key
 module.exports.readCache = Promise.coroutine(function* (req, res) {
   try {
     var cache = yield models.Cache.findOne({
@@ -58,6 +58,19 @@ module.exports.readCache = Promise.coroutine(function* (req, res) {
       message: message,
       data: cache.content
     });
+  } catch (err) {
+    res.status(400).send("Unexpected error occured, Error: ", err);
+  }
+});
+
+// get the list of cache
+module.exports.listCache = Promise.coroutine(function* (req, res) {
+  try {
+    var keys = yield models.Cache.find({}).exec();
+    if (keys.length === 0) {
+      res.status(404).send("No Keys found"); //return this message in case no data exists
+    }
+    res.status(200).send(keys);
   } catch (err) {
     res.status(400).send("Unexpected error occured, Error: ", err);
   }
