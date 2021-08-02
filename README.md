@@ -1,6 +1,10 @@
 # Fashion Cloud
 
-Cache API provides multiple operations in order to add, remove, update and list down data that has been stored in our Cache database. These APIs call be performed by direct hit (`node`, `postman`,`curl command`).
+Your task is to build a REST API that exposes methods to interact with a cache that you will
+build. You will have to use Node.js and Express.js to build the API and MongoDB to store the
+cache data in. The cache does not have another data source in the background that is cached.
+All data returned by the cache is random dummy data. You do not need to build a frontend.
+The API shall be used with tools like curl or Postman.
 
 ## GET request to /api/cache
 
