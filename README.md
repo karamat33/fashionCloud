@@ -6,23 +6,23 @@ cache data in. The cache does not have another data source in the background tha
 All data returned by the cache is random dummy data. You do not need to build a frontend.
 The API shall be used with tools like curl or Postman.
 
-## GET request to /api/cache
+## GET request  /cache
 
 This API Path will list down all cache entries that exists in a database.
 
-## GET request to /api/cache/{key}
+## GET request  /cache/{key}
 
 This API will return the particular information against the provided key
 
-## POST request to /api/cache/{key}
+## POST request  /cache/{key}
 
 This API will add a key in the database against the information provided
 
-## DELETE request to /api/cache/{key}
+## DELETE request /cache/{key}
 
 This API will delete the particular entry against the key provided
 
-## DELETE request to /api/cache
+## DELETE request /cache
 
 This API call will remove all entries from database
 
