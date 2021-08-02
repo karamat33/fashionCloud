@@ -5,7 +5,7 @@ var config = JSON.parse(fs.readFileSync('./config/dbConfig.json', 'utf-8'));
 var crypto = require("crypto");
 
 
-//overwrtitng functionality
+//overwriting functionality
 var checkAndReplaceRecord = function(next) {
 	var self = this;
 	self.modifiedAt = new Date();
