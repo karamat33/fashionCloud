@@ -76,3 +76,29 @@ module.exports.listCache = Promise.coroutine(function* (req, res) {
   }
 });
 
+// delete cache by key
+module.exports.deleteCache =  Promise.coroutine(function* (req, res) {
+  try {
+    yield models.Cache.remove({
+      key: req.params.key
+    }).exec();
+    res.status(200).send({
+      message: 'Key ' + req.params.key + ' has been deleted successfully'
+    });
+  } catch (err) {
+    res.status(400).send("Unexpected error occured, Error: ", err);
+  }
+});
+
+// delete all cache
+module.exports.deleteAllCache =  Promise.coroutine(function* (req, res) {
+  try {
+    yield models.Cache.remove({}).exec();
+    res.status(200).send({
+      message: 'All keys have been deleted successfully'
+    });
+  } catch (err) {
+    res.status(400).send("Unexpected error occured, Error: ", err);
+  }
+
+});
