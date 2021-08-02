@@ -31,11 +31,3 @@ app.use(bodyParser.urlencoded({
 
 // routes
 require('./routes').init(app);
-
-
-//setting up express port connecttion
-var server = app.listen(app.get('port'), function() {
-	console.log('Express server connection on port ' + server.address().port);
-});
-
-module.exports = app;
